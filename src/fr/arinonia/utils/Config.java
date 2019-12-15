@@ -16,12 +16,16 @@ public class Config {
 	public Config() {
 		this.properties = new Properties();
 
-		if (file.exists())
-			try {
-				load();
-			} catch (IOException e) {
-				e.printStackTrace();
+		if(file != null) {
+			if (file.exists()) {
+				try {
+					load();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
+		}
+			
 	}
 	public Config(File file) {
 		this.properties = new Properties();
@@ -56,7 +60,7 @@ public class Config {
 		try {
 			properties.store(new BufferedWriter(new FileWriter(file)), AriLibFX.getProgramName()+" | developed by arinonia");
 		} catch (Throwable t) {
-			throw new IOException("Can't save the config", t);
+			throw new IOException("Impossible de sauvegarder le fichier config", t);
 		}
 	}
 
@@ -64,7 +68,7 @@ public class Config {
 		try {
 			properties.load(new FileInputStream(file));
 		} catch (Throwable t) {
-			throw new IOException("Can't load the config", t);
+			throw new IOException("Impossible de charger le fichier config", t);
 		}
 	}
 	

@@ -1,0 +1,36 @@
+.dialogs{
+    -fx-background-color: #14171a;
+}
+.dialogs> *.button-bar > *.container{
+    -fx-background-color: #101316;
+}
+.dialogs:header *.header-panel{
+    -fx-background-color: #14171a;
+}
+.dialogs:header *.header-panel *.label{
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    -fx-text-fill: #fa5a29;
+    -fx-font-weight: bold;
+
+}
+.dialogs *.button{
+   -fx-background-color:black;
+   -fx-text-fill:white;
+   -fx-wrap-text: true;
+   -fx-effect: dropshadow( three-pass-box, #fa5a29, 10.0, 0.0, 0.0, 0.0);
+   -fx-cursor:hand;
+ }
+
+.dialogs *.button:hover{     
+  -fx-background-color:white;
+  -fx-text-fill:black;
+  -fx-font-weight:bold; 
+ }
+.dialogs *.text-area .content {
+    -fx-background-color: #000000;
+}
+.dialogs *.text-area.scroll-pane {
+	
+	-fx-background-color:transparent;
+}
