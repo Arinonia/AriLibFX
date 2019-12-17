@@ -18,15 +18,7 @@ public class FxAlert {
 
 	private Alert alert;
 	
-	/**
-	 * 
-	 * @param type
-	 * @param title
-	 * @param header
-	 * @param content
-	 * @param exception
-	 * @param label
-	 */
+
 	public FxAlert(AlertType type, String title, String header, String content, Exception exception,String lbl) {
 		alert = new Alert(type);
 		alert.setTitle(title);
@@ -57,38 +49,22 @@ public class FxAlert {
 		expContent.add(label, 0, 0);
 		expContent.add(textArea, 0, 1);
 
-		// Set expandable Exception into the dialog pane.
 		alert.getDialogPane().setExpandableContent(expContent);
 
-		alert.showAndWait();
+		
 	}
 	
-	/**
-	 * 
-	 * @param type
-	 * @param title
-	 * @param header
-	 * @param content
-	 * @param exception
-	 * @param label
-	 * @param cssPath
-	 * @param main class
-	 */
+
 	public FxAlert(AlertType type, String title, String header, String content, Exception exception,String lbl, String cssPath, Class<?> cls) {
 		alert = new Alert(type);
 		alert.setTitle(title);
-		
 		alert.setHeaderText(header);
 		alert.setContentText(content);
-
-		
 		StringWriter sw = new StringWriter();
 		PrintWriter pw = new PrintWriter(sw);
 		exception.printStackTrace(pw);
 		String exceptionText = sw.toString();
-
 		Label label = new Label(lbl);
-
 		TextArea textArea = new TextArea(exceptionText);
 		textArea.setEditable(false);
 		textArea.setWrapText(true);
@@ -103,35 +79,21 @@ public class FxAlert {
 		expContent.setMaxWidth(Double.MAX_VALUE);
 		expContent.add(label, 0, 0);
 		expContent.add(textArea, 0, 1);
-
-		// Set expandable Exception into the dialog pane.
 		alert.getDialogPane().setExpandableContent(expContent);
-
-		
 	}
-	/**
-	 * 
-	 * @param image
-	 */
+
 	public void setIcon(String image) {
 		Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
 		stage.getIcons().add(AriLibFX.loadImage(image));
 	}
-	/**
-	 * 
-	 * @param image
-	 * @param x
-	 * @param y
-	 */
+
 	public void setImage(String image, int x, int y) {
 		ImageView imageView = new ImageView(AriLibFX.loadImage(image));
 		imageView.setFitHeight(x);
 		imageView.setFitWidth(y);
 		alert.setGraphic(imageView);
 	}
-	/**
-	 * set alert visible
-	 */
+
 	public void show() {
 		alert.showAndWait();
 	}

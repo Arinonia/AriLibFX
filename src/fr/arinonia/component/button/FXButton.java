@@ -16,9 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-/**
- * @author Arinonia
- */
+
 
 public class FXButton extends GridPane {
 
@@ -35,17 +33,7 @@ public class FXButton extends GridPane {
 	private Color color_label_hover;
 	private int transition_background;
 	private int transition_border;
-	/**
-	 * 
-	 * @param color_background
-	 * @param color_background_hover
-	 * @param color_border
-	 * @param color_border_hover
-	 * @param color_label
-	 * @param color_label_hover
-	 * @param transition_background
-	 * @param transition_border
-	 */
+
 	public FXButton(Color color_background, Color color_background_hover, Color color_border, Color color_border_hover,
 			Color color_label, Color color_label_hover, int transition_background, int transition_border) {
 		this.color_background = color_background;
@@ -60,9 +48,7 @@ public class FXButton extends GridPane {
 
 		init();
 	}
-	/**
-	 * set attribut 
-	 */
+	
 	private void init() {
 		this.setCursor(Cursor.HAND);
 
@@ -125,47 +111,28 @@ public class FXButton extends GridPane {
 		});
 
 	}
-	/**
-	 * 
-	 * @return label
-	 */
+	
 	public Label getLabel() {
 		return this.label;
 	}
-	/**
-	 * 
-	 * @param value
-	 */
+	
 	public void setText(String value) {
 		this.label.setText(value);
 	}
-	/**
-	 * 
-	 * @return
-	 */
+	
 	public String getText() {
 		return this.label.getText();
 	}
-	/**
-	 * 
-	 * @param wight
-	 */
+
 	public void setStrokeWidth(double wight) {
 		this.background.setStrokeWidth(wight);
 	}
-	/**
-	 * 
-	 * @param value
-	 */
+	
 	public void setArc(double value) {
 		this.background.setArcWidth(value);
 		this.background.setArcHeight(value);
 	}
-	/**
-	 * 
-	 * @param width
-	 * @param height
-	 */
+
 	public void setSize(int width, int height) {
 		this.setPrefSize(width, height);
 		this.setMaxSize(width, height);
@@ -176,17 +143,11 @@ public class FXButton extends GridPane {
 		this.background.setWidth(width);
 		this.background.setHeight(height);
 	}
-	/**
-	 * 
-	 * @param value
-	 */
+	
 	public void setEnabled(boolean value) {
 		this.enabled = value;
 	}
-	/**
-	 * 
-	 * @return
-	 */
+	
 	public boolean isEnabled() {
 		return this.enabled;
 	}

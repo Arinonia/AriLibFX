@@ -13,27 +13,17 @@ public class ServerPing {
     private Socket socket = new Socket();
     private String[] data = new String[999];
 
-    /**
-     * 
-     * @return isOnline
-     */
+  
     public boolean isOnline() {
         return online;
     }
 
-    /**
-     * 
-     * @param online
-     */
+   
     private void setOnline(boolean online) {
         this.online = online;
     }
 
-    /**
-     * 
-     * @param host
-     * @param port
-     */
+  
     public ServerPing(String h, int p) {
         host = h;
         port = p;
@@ -58,33 +48,22 @@ public class ServerPing {
         }
     }
 
-    /**
-     * 
-     * @return motd
-     */
+    
     public String getMotd(){
         return data[0];
     }
 
-    /**
-     * 
-     * @return player online
-     */
+    
     public int getOnline(){
         return Integer.parseInt(data[1]);
     }
 
-    /**
-     * 
-     * @return max players
-     */
+  
     public int getMax(){
         return Integer.parseInt(data[2]);
     }
 
-    /**
-     *  refresh informations
-     */
+   
     public void update(){
         try {
 

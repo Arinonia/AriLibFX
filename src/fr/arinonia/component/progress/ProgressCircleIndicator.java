@@ -26,91 +26,56 @@ abstract class ProgressCircleIndicator extends Control {
 
     private ReadOnlyIntegerWrapper progress = new ReadOnlyIntegerWrapper(0);
     private ReadOnlyBooleanWrapper indeterminate = new ReadOnlyBooleanWrapper(false);
-    /**
-     * constructor
-     */
+    
     public ProgressCircleIndicator() {
         this.getStylesheets().add(AriLibFX.class.getResource("resources/circleprogress.css").toExternalForm());
     }
-    /**
-     * 
-     * @return
-     */
+
     public int getProgress() {
         return progress.get();
     }
 
-    /**
-     * 
-     * @param progressValue
-     */
     public void setProgress(int progressValue) {
         progress.set(defaultToHundred(progressValue));
         indeterminate.set(progressValue < 0);
     }
-    /**
-     * 
-     * @return
-     */
+   
     public ReadOnlyIntegerProperty progressProperty() {
         return progress.getReadOnlyProperty();
     }
-    /**
-     * 
-     * @return
-     */
+  
     public boolean isIndeterminate() {
         return indeterminate.get();
     }
-    /**
-     * progress indeterminate
-     */
+   
     public void makeIndeterminate() {
         setProgress(INDETERMINATE_PROGRESS);
     }
-    /**
-     * 
-     * @return
-     */
+   
     public ReadOnlyBooleanProperty indeterminateProperty() {
         return indeterminate.getReadOnlyProperty();
     }
-    /**
-     * 
-     * @param value
-     * @return
-     */
+   
     private int defaultToHundred(int value) {
         if (value > 100) {
             return 100;
         }
         return value;
     }
-    /**
-     * 
-     * @param value
-     */
+   
     public final void setInnerCircleRadius(int value) {
         innerCircleRadiusProperty().set(value);
     }
-    /**
-     * 
-     * @return
-     */
+   
     public final DoubleProperty innerCircleRadiusProperty() {
         return innerCircleRadius;
     }
-    /**
-     * 
-     * @return
-     */
+    
     public final double getInnerCircleRadius() {
         return innerCircleRadiusProperty().get();
     }
 
-    /**
-     * 
-     */
+   
     private DoubleProperty innerCircleRadius = new StyleableDoubleProperty(60) {
         @Override
         public Object getBean() {
@@ -127,11 +92,7 @@ abstract class ProgressCircleIndicator extends Control {
             return StyleableProperties.INNER_CIRCLE_RADIUS;
         }
     };
-    /**
-     * 
-     * @author arino
-     *
-     */
+    
     private static class StyleableProperties {
 		private static final CssMetaData<ProgressCircleIndicator, Number> INNER_CIRCLE_RADIUS = new CssMetaData<ProgressCircleIndicator, Number>(
                 "-fx-inner-radius", SizeConverter.getInstance(), 60) {
@@ -155,10 +116,7 @@ abstract class ProgressCircleIndicator extends Control {
             STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }
-    /**
-     * 
-     * @return
-     */
+   
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() {
         return StyleableProperties.STYLEABLES;
     }

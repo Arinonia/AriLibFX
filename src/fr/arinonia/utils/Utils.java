@@ -20,19 +20,13 @@ public class Utils {
 		}
 	}
 
-	/**
-	 * 
-	 * @return memory disponible
-	 */
+
 	public static final long getPhysicalMemoryBytes() {
 		return ((com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean())
 				.getTotalPhysicalMemorySize() / (1024 * 1024 * 1024);
 	}
 
-	/**
-	 * 
-	 * @return true if java 64 bits false if java 32 bits
-	 */
+
 	public static boolean hasJava64Bits() {
 		if (System.getProperty("sun.arch.data.model").contains("64")) {
 			return true;
@@ -40,6 +34,8 @@ public class Utils {
 			return false;
 		}
 	}
-
 	
+	public static String getJavaVersion() {
+		return System.getProperty("java.version");
+	}
 }

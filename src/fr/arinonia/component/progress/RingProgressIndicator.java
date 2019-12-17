@@ -41,9 +41,7 @@ public class RingProgressIndicator extends ProgressCircleIndicator {
         return ringWidthProperty().get();
     }
 
-    /**
-     * thickness of the ring indicator.
-     */
+    
     private DoubleProperty ringWidth = new StyleableDoubleProperty(22) {
         @Override
         public Object getBean() {
