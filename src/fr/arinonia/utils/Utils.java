@@ -28,11 +28,7 @@ public class Utils {
 
 
 	public static boolean hasJava64Bits() {
-		if (System.getProperty("sun.arch.data.model").contains("64")) {
-			return true;
-		} else {
-			return false;
-		}
+		return (System.getProperty("sun.arch.data.model").contains("64"));
 	}
 	
 	public static String getJavaVersion() {
