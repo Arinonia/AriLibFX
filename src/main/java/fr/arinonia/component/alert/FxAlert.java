@@ -1,8 +1,5 @@
 package fr.arinonia.component.alert;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
 import fr.arinonia.AriLibFX;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -14,88 +11,103 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
-public class FxAlert {
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
+public class FxAlert
+{
 	private Alert alert;
-	
 
-	public FxAlert(AlertType type, String title, String header, String content, Exception exception,String lbl) {
-		alert = new Alert(type);
-		alert.setTitle(title);
-		
-		alert.setHeaderText(header);
-		alert.setContentText(content);
+	public FxAlert(AlertType type, String title, String header, String content, Exception exception,String lbl)
+	{
+		this.alert = new Alert(type);
+		this.alert.setTitle(title);
+
+		this.alert.setHeaderText(header);
+		this.alert.setContentText(content);
 
 		
-		StringWriter sw = new StringWriter();
-		PrintWriter pw = new PrintWriter(sw);
+		final StringWriter sw = new StringWriter();
+		final PrintWriter pw = new PrintWriter(sw);
+
 		exception.printStackTrace(pw);
-		String exceptionText = sw.toString();
 
-		Label label = new Label(lbl);
+		final String exceptionText = sw.toString();
+		final Label label = new Label(lbl);
+		final TextArea textArea = new TextArea(exceptionText);
 
-		TextArea textArea = new TextArea(exceptionText);
 		textArea.setEditable(false);
 		textArea.setWrapText(true);
-		DialogPane dialogPane = alert.getDialogPane();
+
+		final DialogPane dialogPane = alert.getDialogPane();
+
 		textArea.setMaxWidth(Double.MAX_VALUE);
 		textArea.setMaxHeight(Double.MAX_VALUE);
 		GridPane.setVgrow(textArea, Priority.ALWAYS);
 		GridPane.setHgrow(textArea, Priority.ALWAYS);
 		dialogPane.getStylesheets().add(AriLibFX.class.getResource("/fr/arinonia/resources/dialogs.css").toExternalForm());
 		dialogPane.getStyleClass().add("dialogs");
-		GridPane expContent = new GridPane();
+
+		final GridPane expContent = new GridPane();
+
 		expContent.setMaxWidth(Double.MAX_VALUE);
 		expContent.add(label, 0, 0);
 		expContent.add(textArea, 0, 1);
-
 		alert.getDialogPane().setExpandableContent(expContent);
-
-		
 	}
 	
 
-	public FxAlert(AlertType type, String title, String header, String content, Exception exception,String lbl, String cssPath, Class<?> cls) {
-		alert = new Alert(type);
-		alert.setTitle(title);
-		alert.setHeaderText(header);
-		alert.setContentText(content);
-		StringWriter sw = new StringWriter();
-		PrintWriter pw = new PrintWriter(sw);
+	public FxAlert(AlertType type, String title, String header, String content, Exception exception,String lbl, String cssPath, Class<?> cls)
+	{
+		this.alert = new Alert(type);
+		this.alert.setTitle(title);
+		this.alert.setHeaderText(header);
+		this.alert.setContentText(content);
+
+		final StringWriter sw = new StringWriter();
+		final PrintWriter pw = new PrintWriter(sw);
 		exception.printStackTrace(pw);
-		String exceptionText = sw.toString();
-		Label label = new Label(lbl);
-		TextArea textArea = new TextArea(exceptionText);
+
+		final String exceptionText = sw.toString();
+		final Label label = new Label(lbl);
+		final TextArea textArea = new TextArea(exceptionText);
+
 		textArea.setEditable(false);
 		textArea.setWrapText(true);
-		DialogPane dialogPane = alert.getDialogPane();
+
+		final DialogPane dialogPane = alert.getDialogPane();
+
 		textArea.setMaxWidth(Double.MAX_VALUE);
 		textArea.setMaxHeight(Double.MAX_VALUE);
 		GridPane.setVgrow(textArea, Priority.ALWAYS);
 		GridPane.setHgrow(textArea, Priority.ALWAYS);
 		dialogPane.getStylesheets().add(cls.getResource(cssPath).toExternalForm());
 		dialogPane.getStyleClass().add("dialogs");
-		GridPane expContent = new GridPane();
+
+		final GridPane expContent = new GridPane();
+
 		expContent.setMaxWidth(Double.MAX_VALUE);
 		expContent.add(label, 0, 0);
 		expContent.add(textArea, 0, 1);
 		alert.getDialogPane().setExpandableContent(expContent);
 	}
 
-	public void setIcon(String image) {
-		Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+	public void setIcon(String image)
+	{
+		final Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
 		stage.getIcons().add(AriLibFX.loadImage(image));
 	}
 
-	public void setImage(String image, int x, int y) {
-		ImageView imageView = new ImageView(AriLibFX.loadImage(image));
+	public void setImage(String image, int x, int y)
+	{
+		final ImageView imageView = new ImageView(AriLibFX.loadImage(image));
 		imageView.setFitHeight(x);
 		imageView.setFitWidth(y);
 		alert.setGraphic(imageView);
 	}
 
-	public void show() {
+	public void show()
+	{
 		alert.showAndWait();
 	}
-	
 }

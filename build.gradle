@@ -2,8 +2,10 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'java'
 
-repositories {
+group 'fr.arinonia'
+version '1.0.3'
 
+repositories {
     jcenter()
 }
 
