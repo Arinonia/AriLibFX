@@ -1,0 +1,1 @@
+Cette librairie est utilisée pour mes tutoriels sur youtube, j'ai retiré pas mal de choses de la 1.0.2 à la 1.0.3 c'est normal

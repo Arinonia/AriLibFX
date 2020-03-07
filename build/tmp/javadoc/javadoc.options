@@ -1,0 +1,11 @@
+-classpath 'Y:\\dev\\java\\intellij\\lib\\AriLibFX\\build\\classes\\java\\main;Y:\\dev\\java\\intellij\\lib\\AriLibFX\\build\\resources\\main'
+-d 'Y:\\dev\\java\\intellij\\lib\\AriLibFX\\build\\docs\\javadoc'
+-doctitle 'AriLibFX 1.0.3 API'
+-quiet 
+-windowtitle 'AriLibFX 1.0.3 API'
+'Y:\\dev\\java\\intellij\\lib\\AriLibFX\\src\\main\\java\\fr\\arinonia\\arilibfx\\AriLibFX.java'
+'Y:\\dev\\java\\intellij\\lib\\AriLibFX\\src\\main\\java\\fr\\arinonia\\arilibfx\\ui\\component\\ANews.java'
+'Y:\\dev\\java\\intellij\\lib\\AriLibFX\\src\\main\\java\\fr\\arinonia\\arilibfx\\ui\\panel\\IPanel.java'
+'Y:\\dev\\java\\intellij\\lib\\AriLibFX\\src\\main\\java\\fr\\arinonia\\arilibfx\\ui\\utils\\ResizeHelper.java'
+'Y:\\dev\\java\\intellij\\lib\\AriLibFX\\src\\main\\java\\fr\\arinonia\\arilibfx\\utils\\AriLogger.java'
+'Y:\\dev\\java\\intellij\\lib\\AriLibFX\\src\\main\\java\\fr\\arinonia\\arilibfx\\utils\\ServerPing.java'
