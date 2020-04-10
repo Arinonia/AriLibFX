@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'fr.arinonia.arilibfx'
-version '1.0.3'
+version '1.0.4'
 
 sourceCompatibility = 1.8
 
@@ -13,4 +13,8 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+compileJava {
+    options.encoding = "UTF-8"
 }
