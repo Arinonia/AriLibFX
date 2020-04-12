@@ -25,7 +25,7 @@ public class AriLogger {
     private String genPrefix() {
         StringBuilder builder = new StringBuilder();
         builder.append("[").append(name).append("]").append(" [");
-        String pattern = "DD/MM/YYYY HH:mm:ss";
+        String pattern = "dd/MM/YYYY HH:mm:ss";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String date = simpleDateFormat.format(new Date(System.currentTimeMillis()));
         builder.append(date).append("] ");
