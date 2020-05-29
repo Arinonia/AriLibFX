@@ -1,11 +1,5 @@
 package fr.arinonia.arilibfx;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
-import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
 /**
@@ -22,15 +16,13 @@ public class AriLibFX {
                 +"-fx-backgound-repeat: skretch;"+"-fx-backgound-position: center center;"
                 +"-fx-background-size: cover;";
     }
+    
     public static Image loadImage(String image) {
-        BufferedImage bufferedImage = null;
-        try {
-            bufferedImage = ImageIO.read(AriLibFX.class.getResourceAsStream(getResourcePath()+"/" + image + ".png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        assert bufferedImage != null;
-        return SwingFXUtils.toFXImage(bufferedImage, null);
+        loadImage(image, ".png");
+    }
+    
+    public static Image loadImage(String image, String extension) {
+        return new Image(AriLibFX.class.getResourceAsStream(getResourcePath() + "/" + image + extension));
     }
 
     public static void setProgramName(String programName) { AriLibFX.programName = programName; }
