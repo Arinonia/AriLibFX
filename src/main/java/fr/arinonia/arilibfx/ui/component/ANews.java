@@ -13,7 +13,7 @@ import javafx.scene.shape.Rectangle;
  * Created by Arinonia on 07/03/2020 inside the package - fr.arinonia.arilibfx.ui.component
  */
 
-class ANews extends GridPane {
+public class ANews extends GridPane {
 
     /*
     *Je déconseille de modifier la taille des rectangles sinon il faudra tout ré-alligner
@@ -22,8 +22,9 @@ class ANews extends GridPane {
     private Rectangle backgroundRect = new Rectangle();
     private Rectangle borderRect = new Rectangle();
 
-    public ANews(String link, String text) {
-        Image news = new Image(link);
+    public ANews(String url, String text) {
+        System.out.println("[AriLibFx]-Le composant que vous essayez n'est pas encore terminé");
+        Image news = new Image(url);
         ImageView imageNews = new ImageView(news);
         Rectangle borderRect = new Rectangle();
         Label info = new Label(text);
@@ -43,7 +44,11 @@ class ANews extends GridPane {
         backgroundRect.setWidth(300);
         backgroundRect.setHeight(200);
         borderRect.setWidth(300);
+        this.setMaxWidth(300);
+        this.setPrefWidth(300);
         borderRect.setHeight(170);
+        this.setMaxHeight(300+170);
+        this.setPrefHeight(300+170);
         borderRect.setTranslateY(-30);
         borderRect.setFill(Color.rgb(255,255,255,0.2));
         imageNews.setFitWidth(298);
@@ -62,4 +67,6 @@ class ANews extends GridPane {
     public void setBorderRectColor(Color borderRectColor){
         this.borderRect.setFill(borderRectColor);
     }
+    public double getBackgroundWidth() { return backgroundRect.getWidth(); }
+    public double getBorderWidth() { return borderRect.getWidth(); }
 }
