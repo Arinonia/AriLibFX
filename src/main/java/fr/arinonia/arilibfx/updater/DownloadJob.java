@@ -1,5 +1,7 @@
 package fr.arinonia.arilibfx.updater;
 
+import fr.arinonia.arilibfx.AriLibFX;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -49,12 +51,12 @@ public class DownloadJob {
         DownloadTask task;
         while ((task = remainingFiles.poll()) != null) {
             if (task.getNunAttempts() > 5 ) {
-                System.err.println("Gave up trying to download " + task.getUrl() + " for job '" + name + "'");
+                AriLibFX.LOGGER.warn("Gave up trying to download " + task.getUrl() + " for job '" + name + "'");
             }
             else{
                 try {
                     final String result = task.download();
-                    System.out.println("Finished downloading " + task.getDestination() + " for job '" + name + "'" + ": " + result);
+                    AriLibFX.LOGGER.log("Finished downloading " + task.getDestination() + " for job '" + name + "'" + ": " + result);
                     this.listener.onDownloadJobProgressChanged(this);
                 } catch (IOException e) {
                     System.err.println("Couldn't download " + task.getUrl() + " for job '" + name + "'");
@@ -73,13 +75,13 @@ public class DownloadJob {
         }
         started = true;
         if (allFiles.isEmpty()) {
-            System.out.println("Download job '" + name + "' skipped as there are no files to download");
+            AriLibFX.LOGGER.log("Download job '" + name + "' skipped as there are no files to download");
             this.listener.onDownloadJobFinished(this);
         }
         else {
             final int threads = executor.getMaximumPoolSize();
             remainingThreads.set(threads);
-            System.out.println("Download job '" + name + "' started (" + threads + " threads, " + allFiles.size() + " files)");
+            AriLibFX.LOGGER.log("Download job '" + name + "' started (" + threads + " threads, " + allFiles.size() + " files)");
             for (int i = 0; i < threads; i++) {
                 executor.submit(new Runnable() {
                     @Override

@@ -1,8 +1,10 @@
 plugins {
     id 'java'
 }
+apply plugin: 'maven-publish'
 
-group 'fr.arinonia.arilibfx'
+
+group 'fr.arinonia'
 version '1.0.5'
 
 sourceCompatibility = 1.8
@@ -17,4 +19,29 @@ dependencies {
 }
 compileJava {
     options.encoding = "UTF-8"
+}
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
+}
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            artifact tasks.sourcesJar // Faudra créer une task source jar pour créer le jar -sources
+
+            pom {
+                groupId = project.group
+                artifactId = 'arilibfx'
+                version = project.version
+                name = 'AriLibFx'
+                description = 'It\'s a simple library using JavaFX'
+                url = 'https://github.com/Arinonia/AriLibFX'
+            }
+        }
+    }
 }
