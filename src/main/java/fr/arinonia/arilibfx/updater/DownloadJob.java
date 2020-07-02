@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -26,6 +27,8 @@ public class DownloadJob {
     private final List<DownloadTask> allFiles = Collections.synchronizedList(new ArrayList<DownloadTask>());
     private final List<DownloadTask> failures = Collections.synchronizedList(new ArrayList<DownloadTask>());
     private final AtomicInteger remainingThreads = new AtomicInteger();
+
+    private ThreadPoolExecutor executorService = (ThreadPoolExecutor) Executors.newFixedThreadPool(1);
 
     private boolean started;
 
@@ -51,12 +54,12 @@ public class DownloadJob {
         DownloadTask task;
         while ((task = remainingFiles.poll()) != null) {
             if (task.getNunAttempts() > 5 ) {
-                AriLibFX.LOGGER.warn("Gave up trying to download " + task.getUrl() + " for job '" + name + "'");
+                System.err.println("Gave up trying to download " + task.getUrl() + " for job '" + name + "'");
             }
             else{
                 try {
                     final String result = task.download();
-                    AriLibFX.LOGGER.log("Finished downloading " + task.getDestination() + " for job '" + name + "'" + ": " + result);
+                    System.out.println("Finished downloading " + task.getDestination() + " for job '" + name + "'" + ": " + result);
                     this.listener.onDownloadJobProgressChanged(this);
                 } catch (IOException e) {
                     System.err.println("Couldn't download " + task.getUrl() + " for job '" + name + "'");
@@ -75,13 +78,14 @@ public class DownloadJob {
         }
         started = true;
         if (allFiles.isEmpty()) {
-            AriLibFX.LOGGER.log("Download job '" + name + "' skipped as there are no files to download");
+            System.out.println("Download job '" + name + "' skipped as there are no files to download");
             this.listener.onDownloadJobFinished(this);
         }
         else {
             final int threads = executor.getMaximumPoolSize();
             remainingThreads.set(threads);
-            AriLibFX.LOGGER.log("Download job '" + name + "' started (" + threads + " threads, " + allFiles.size() + " files)");
+            System.out.println("Download job '" + name + "' started (" + threads + " threads, " + allFiles.size() + " files)");
+            this.listener.onDownloadJobStarted(this);
             for (int i = 0; i < threads; i++) {
                 executor.submit(new Runnable() {
                     @Override
@@ -97,16 +101,25 @@ public class DownloadJob {
         return name;
     }
 
+    public ThreadPoolExecutor getExecutorService() {
+        return executorService;
+    }
+
+    public Queue<DownloadTask> getRemainingFiles() {
+        return remainingFiles;
+    }
+
     public int getFailures() {
         return failures.size();
     }
-
 
     public List<DownloadTask> getAllFiles() {
         return allFiles;
     }
 
+    public void setExecutorService(int number){
+        executorService = (ThreadPoolExecutor) Executors.newFixedThreadPool(number);
+    }
     public boolean isComplete(){
         return started && remainingFiles.isEmpty() && remainingThreads.get() == 0;
-    }
-}
+    }}

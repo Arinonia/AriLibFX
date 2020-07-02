@@ -6,4 +6,6 @@ package fr.arinonia.arilibfx.updater;
 public interface DownloadListener {
     public void onDownloadJobFinished(DownloadJob job);
     public void onDownloadJobProgressChanged(DownloadJob job);
+    public void onDownloadJobStarted(DownloadJob job);
+
 }
