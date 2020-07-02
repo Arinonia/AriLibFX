@@ -39,7 +39,7 @@ publishing {
                 artifactId = 'arilibfx'
                 version = project.version
                 name = 'AriLibFx'
-                description = 'It\'s a simple library who containt minecraft auth and updater, she using JavaFX'
+                description = 'This is a library which contains minecraft auth and updater using JavaFX'
                 url = 'https://github.com/Arinonia/AriLibFX'
             }
         }
