@@ -11,9 +11,9 @@ public class LoginResponse {
     private String clientToken;
     private Profile selectedProfile;
 
-    public LoginResponse(String accessToken, String clientToke, Profile selectedProfile) {
+    public LoginResponse(String accessToken, String clientToken, Profile selectedProfile) {
         this.accessToken = accessToken;
-        this.clientToke = clientToke;
+        this.clientToken = clientToken;
         this.selectedProfile = selectedProfile;
     }
 
@@ -22,7 +22,7 @@ public class LoginResponse {
     }
 
     public String getClientToken() {
-        return clientToke;
+        return clientToken;
     }
 
     public Profile getSelectedProfile() {
