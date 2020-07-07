@@ -8,7 +8,7 @@ import fr.arinonia.arilibfx.auth.premium.Profile;
 public class LoginResponse {
 
     private String accessToken;
-    private String clientToke;
+    private String clientToken;
     private Profile selectedProfile;
 
     public LoginResponse(String accessToken, String clientToke, Profile selectedProfile) {
@@ -21,7 +21,7 @@ public class LoginResponse {
         return accessToken;
     }
 
-    public String getClientToke() {
+    public String getClientToken() {
         return clientToke;
     }
 
