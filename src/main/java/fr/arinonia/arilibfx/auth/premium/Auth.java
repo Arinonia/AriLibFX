@@ -59,6 +59,44 @@ public class Auth {
             return null;
         }
     }
+    
+    public static @NotNull LoginResponse refresh(String accessToken, String clientToken) throws AuthenticationUnavailableException, UserMigratedException, InvalidTokensException
+    {
+        return refresh(accessToken, clientToken, null);
+    }
+
+    public static LoginResponse refresh(String accessToken, String clientToken, Proxy proxy) throws AuthenticationUnavailableException, UserMigratedException, InvalidTokensException
+    {
+        final RequestResponse result = sendJsonPostRequest(getRequestUrl("refresh"), JsonAuthUtils.tokenToJson(accessToken, clientToken), proxy);
+        if (result.isSuccessful())
+        {
+            final String rAccessToken = (String) result.getData().get("accessToken");
+            final String rClientToken = (String) result.getData().get("clientToken");
+            final Profile selectedProfile = JsonAuthUtils.gson.fromJson(JsonAuthUtils.gson.toJson(result.getData().get("selectedProfile")), Profile.class);
+
+            profile     = selectedProfile;
+            tokenAccess = rAccessToken;
+
+            return new LoginResponse(rAccessToken, rClientToken, selectedProfile);
+        }
+        profile     = null;
+        tokenAccess = "";
+        final ErrorResponse errorResponse = JsonAuthUtils.gson.fromJson(JsonAuthUtils.gson.toJson(result.getData()), ErrorResponse.class);
+        if (result.getData().get("cause") != null && ((String) (result.getData().get("cause"))).equalsIgnoreCase("UserMigratedException"))
+            throw new UserMigratedException(errorResponse);
+        else
+            throw new InvalidTokensException(errorResponse);
+    }
+    
+    public static void invalidate(String accessToken, String clientToken) throws AuthenticationUnavailableException
+    {
+        invalidate(accessToken, clientToken, null);
+    }
+
+    public static void invalidate(String accessToken, String clientToken, Proxy proxy) throws AuthenticationUnavailableException
+    {
+        sendJsonPostRequest(getRequestUrl("invalidate"), JsonAuthUtils.tokenToJson(accessToken, clientToken), proxy);
+    }
 
     private static RequestResponse sendJsonPostRequest(URL requestUrl, String payload, Proxy proxy)throws AuthenticationUnavailableException{
         HttpsURLConnection connection = null;
