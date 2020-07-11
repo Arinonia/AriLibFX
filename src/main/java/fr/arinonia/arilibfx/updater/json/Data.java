@@ -9,7 +9,7 @@ import java.util.List;
 public class Data {
     private DataMaintenance maintenance;
     private List<DataFile> files = new ArrayList<DataFile>();
-    private List<String> ignoredFiles = new ArrayList<String>();
+    private List<String> ignoreFiles = new ArrayList<String>();
 
 
     public DataMaintenance getMaintenance() {
@@ -20,8 +20,8 @@ public class Data {
         return files;
     }
 
-    public List<String> getIgnoredFiles() {
-        return ignoredFiles;
+    public List<String> getIgnoreFiles() {
+        return ignoreFiles;
     }
 
     public void setMaintenance(DataMaintenance maintenance) {
@@ -32,7 +32,7 @@ public class Data {
         this.files = files;
     }
 
-    public void setIgnoredFiles(List<String> ignoredFiles) {
-        this.ignoredFiles = ignoredFiles;
+    public void setIgnoredFiles(List<String> ignoreFiles) {
+        this.ignoreFiles = ignoreFiles;
     }
 }
