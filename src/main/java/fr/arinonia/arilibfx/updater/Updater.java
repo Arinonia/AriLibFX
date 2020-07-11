@@ -74,7 +74,7 @@ public class Updater {
             }
         }
 
-        for (String ignore : data.getIgnoreFiles()){
+        for (String ignore : data.getIgnoredFiles()){
             File file = new File(this.dir, ignore);
             if(file.isDirectory()){
                 ArrayList<File> files = listFiles(file);
