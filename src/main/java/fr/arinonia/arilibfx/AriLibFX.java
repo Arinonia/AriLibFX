@@ -24,9 +24,7 @@ public class AriLibFX {
     public static void setProgramName(String programName) { AriLibFX.programName = programName; }
 
     public static String getProgramName() {
-        if (programName == null)
-            return "";
-        return programName;
+        return programName == null ? "" : programName;
     }
     public static void setResourcePath(String resourcePath) {
         AriLibFX.resourcePath = resourcePath.endsWith("/") ? resourcePath.substring(0, resourcePath.length() - 1) : resourcePath;
